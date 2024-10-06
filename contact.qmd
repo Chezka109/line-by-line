@@ -1,0 +1,21 @@
+---
+title: "contact"
+image: profile.jpg
+contact:
+  template: broadside
+---
+
+Thank you for visiting Line by Line! I’d love to hear from you—whether it’s feedback, a question, or just to chat about coding and design. Feel free to reach out using any of the methods below!
+
+Email:
+If you prefer email, you can contact me directly at [quinola01@allegheny.edu]. I do my best to respond within 48 hours.
+
+Social Media:
+You can also connect with me on social media:
+
+LinkedIn: @ChezkaQuinola
+
+Comments or Suggestions:
+Have suggestions for topics or coding challenges you'd like me to write about? Leave a comment below or shoot me a message—I'm always looking for new ideas to share!
+
+Looking forward to connecting with you!
