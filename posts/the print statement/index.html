@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Chezka Quinola">
+<meta name="dcterms.date" content="2024-10-07">
 
-<title>blog – line by line</title>
+<title>the print statement – line by line</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +22,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,77 +102,19 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">line by line</span>
     </a>
   </div>
@@ -149,15 +125,15 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">about</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./contact.html"> 
+    <a class="nav-link" href="../../contact.html"> 
 <span class="menu-text">contact</span></a>
   </li>  
   <li class="nav-item compact">
@@ -175,146 +151,128 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">blog</h1>
-                      </div>
+    <div class="quarto-title column-body">
+      <h1 class="title">the print statement</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">coding concept</div>
+              </div>
+                  </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Chezka Quinola </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">October 7, 2024</p>
+      </div>
+    </div>
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(3)</span></div><div class="category" data-category="casual">casual <span class="quarto-category-count">(1)</span></div><div class="category" data-category="coding concept">coding concept <span class="quarto-category-count">(2)</span></div><div class="category" data-category="introduction">introduction <span class="quarto-category-count">(1)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
+<p>When I first started learning to code, the <code>print</code> statement seemed like the simplest tool in my toolkit. All it does is show output, right? I could type <code>print("Hello, World!")</code>, see the text pop up on the screen, and feel like I’d accomplished something. But as I got deeper into coding, I realized the <code>print</code> statement is so much more than just a way to display text—it’s a lifeline for debugging, understanding your program’s flow, and making sense of complex logic.</p>
+<p>Here’s a look into my journey with the <code>print</code> statement, and why it’s much more powerful (and occasionally frustrating) than I first thought.</p>
+<section id="challenge-1-using-print-to-understand-my-code" class="level3">
+<h3 class="anchored" data-anchor-id="challenge-1-using-print-to-understand-my-code">Challenge 1: Using Print to Understand My Code</h3>
+<p>In the beginning, coding was overwhelming. It felt like I had no idea what was happening under the hood of my program. Why wasn’t it working? What was going wrong? That’s when the <code>print</code> statement became my best friend. I started printing everything to get a sense of what was happening at different points in my code:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> x <span class="op">+</span> y</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"x:"</span>, x)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"y:"</span>, y)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"z:"</span>, z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This helped me understand basic flow, but I quickly learned that spamming <code>print</code> statements can also make things more confusing. Over time, I realized I had to be strategic with where and what I printed.</p>
+</section>
+<section id="challenge-2-print-spaghetti-code" class="level3">
+<h3 class="anchored" data-anchor-id="challenge-2-print-spaghetti-code">Challenge 2: Print Spaghetti Code</h3>
+<p>There were times when I got carried away with print statements, to the point where my code turned into a giant mess. Imagine working on a bigger project where half of the file looks like this:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Starting program..."</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Entering loop..."</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Checking condition..."</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Condition met!"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Exiting loop..."</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Program complete."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>It felt like I was writing more <code>print</code> statements than actual code. Sure, I knew what was happening, but debugging became a nightmare because I was drowning in output! I learned that while <code>print</code> is great for debugging, using it too much can clutter your program and your mind. Instead, I started grouping related prints together and giving them more meaningful output:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Loop iteration:"</span>, iteration_number)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Current value of x:"</span>, x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This helped me track variables without overwhelming myself with too much information.</p>
+</section>
+<section id="challenge-3-missing-newlines-and-formatting-fails" class="level3">
+<h3 class="anchored" data-anchor-id="challenge-3-missing-newlines-and-formatting-fails">Challenge 3: Missing Newlines and Formatting Fails</h3>
+<p>When I first started using the <code>print</code> statement, I didn’t think much about how the output looked. If I wanted to display two variables, I’d just slap them together:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"x:"</span>, x, <span class="st">"y:"</span>, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>That worked, but as I started writing more complex programs, I realized I needed cleaner output. I had to format things better, or else my results became hard to read. That’s when I discovered Python’s string formatting:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"x: </span><span class="sc">{</span>x<span class="sc">}</span><span class="ss">, y: </span><span class="sc">{</span>y<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This small change was a game-changer. My print statements became clearer, and I could customize the output without worrying about awkward spaces or concatenations.</p>
+</section>
+<section id="challenge-4-forgetting-to-remove-print-statements" class="level3">
+<h3 class="anchored" data-anchor-id="challenge-4-forgetting-to-remove-print-statements">Challenge 4: Forgetting to Remove Print Statements</h3>
+<p>This one bit me hard in some projects. I’d use <code>print</code> to debug my code, solve the issue, and then forget to remove the prints. What’s worse is when I shared my code or submitted assignments, and my output was littered with unnecessary debug prints:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Oops, I forgot to remove this:</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Starting process..."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Not only did this make the final code look unprofessional, but it also slowed down performance in larger projects. Now, I’m much more mindful of cleaning up after myself and replacing <code>print</code> with proper logging or comments when necessary.</p>
+</section>
+<section id="challenge-5-misunderstanding-print-and-return" class="level3">
+<h3 class="anchored" data-anchor-id="challenge-5-misunderstanding-print-and-return">Challenge 5: Misunderstanding Print and Return</h3>
+<p>One of the biggest early hurdles I faced was confusing <code>print</code> with <code>return</code> in functions. I used to think that printing something inside a function was the same as returning a value, but that led to some frustrating bugs. For example:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add_numbers(a, b):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(a <span class="op">+</span> b)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> add_numbers(<span class="dv">5</span>, <span class="dv">10</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Result:"</span>, result)  <span class="co"># Oops, this prints 'None'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>I was printing the result but not actually returning anything! This was a painful lesson because it took me a while to figure out why I wasn’t getting the output I expected. Now I always remember that <code>print</code> is for output, and <code>return</code> is for passing values between functions.</p>
+</section>
+<section id="what-i-learned-print-is-more-than-just-output" class="level3">
+<h3 class="anchored" data-anchor-id="what-i-learned-print-is-more-than-just-output">What I Learned: Print Is More Than Just Output</h3>
+<p>The <code>print</code> statement may seem basic, but it’s a tool that evolves as your coding skills grow. It helps you understand your program, track down bugs, and make sense of complex logic. But it also comes with its own set of challenges—too many prints can clutter your code, forgetting to remove them can cause issues, and using them incorrectly can lead to confusion.</p>
+<p>Today, I still rely on <code>print</code>, but I’ve learned how to use it wisely:</p>
+<ol type="1">
+<li><strong>Use print for debugging, but clean it up when you’re done.</strong></li>
+<li><strong>Format your prints for clarity—make your output meaningful.</strong></li>
+<li><strong>Remember that print doesn’t replace return in functions!</strong></li>
+</ol>
+<p>Here’s how I approach <code>print</code> statements now in my code:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add_numbers(a, b):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> a <span class="op">+</span> b</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Adding </span><span class="sc">{</span>a<span class="sc">}</span><span class="ss"> and </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss"> results in </span><span class="sc">{</span>result<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> add_numbers(<span class="dv">5</span>, <span class="dv">10</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Final result:"</span>, result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>It’s clean, it’s clear, and it helps me follow the flow without overwhelming my output. The <code>print</code> statement may be one of the first tools you learn, but it’s one that stays with you throughout your entire coding journey—so don’t underestimate its power!</p>
+</section>
+<section id="conclusion-embrace-print-but-dont-let-it-take-over" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion-embrace-print-but-dont-let-it-take-over">Conclusion: Embrace Print, but Don’t Let It Take Over</h3>
+<p>The <code>print</code> statement is more than just a way to display information—it’s a window into what your program is doing behind the scenes. But like any tool, it needs to be used wisely. Too many <code>print</code> statements can lead to chaos, but used thoughtfully, they’ll be your best debugging partner. Debugging, clarifying logic, and simply understanding your code all start with a good, well-placed <code>print</code>.</p>
 
 
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="coding concept" data-listing-date-sort="1728619200000" data-listing-file-modified-sort="1728931863498" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="812">
-<div class="thumbnail">
-<p><a href="./posts/the if statement/index.html" class="no-external"></a></p><a href="./posts/the if statement/index.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/the if statement/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/the if statement/index.html" class="no-external">the if statement</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/the if statement/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('coding concept'); return false;">
-coding concept
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/the if statement/index.html" class="no-external">When I first learned about the <code>if</code> statement, it seemed almost too simple. It’s just a decision-maker, right? A basic tool for telling the computer, “If this is true, then do…<code></code></a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/the if statement/index.html" class="no-external">
-<div class="listing-date">
-Oct 11, 2024
-</div>
-<div class="listing-author">
-Chezka Quinola
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="coding concept" data-listing-date-sort="1728273600000" data-listing-file-modified-sort="1728931902947" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="905">
-<div class="thumbnail">
-<p><a href="./posts/the print statement/index.html" class="no-external"></a></p><a href="./posts/the print statement/index.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/the print statement/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/the print statement/index.html" class="no-external">the print statement</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/the print statement/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('coding concept'); return false;">
-coding concept
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/the print statement/index.html" class="no-external">When I first started learning to code, the <code>print</code> statement seemed like the simplest tool in my toolkit. All it does is show output, right? I could type <code>print("Hello, World!")</code>…<code></code></a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/the print statement/index.html" class="no-external">
-<div class="listing-date">
-Oct 7, 2024
-</div>
-<div class="listing-author">
-Chezka Quinola
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="introduction,casual" data-listing-date-sort="1728100800000" data-listing-file-modified-sort="1728310579356" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="264">
-<div class="thumbnail">
-<p><a href="./posts/welcome/index.html" class="no-external"></a></p><a href="./posts/welcome/index.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/welcome/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/welcome/index.html" class="no-external">welcome to my blog</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/welcome/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('introduction'); return false;">
-introduction
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('casual'); return false;">
-casual
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/welcome/index.html" class="no-external">Welcome to my very first blog post! Read to learn more :)</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/welcome/index.html" class="no-external">
-<div class="listing-date">
-Oct 5, 2024
-</div>
-<div class="listing-author">
-Chezka Quinola
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
